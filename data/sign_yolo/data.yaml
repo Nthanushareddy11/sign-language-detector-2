@@ -1,0 +1,6 @@
+train: /home/claude/asl_data/sign_yolo/train/images
+val:   /home/claude/asl_data/sign_yolo/valid/images
+test:  /home/claude/asl_data/sign_yolo/test/images
+
+nc: 5
+names: ['hello', 'iloveyou', 'no', 'thankyou', 'yes']

@@ -1,0 +1,10 @@
+# Sign Language Detection Dataset
+# 5 classes: hello, iloveyou, no, thankyou, yes
+# 756 training images - bundled, no download needed!
+
+train: data/sign_yolo/train/images
+val:   data/sign_yolo/valid/images
+test:  data/sign_yolo/test/images
+
+nc: 5
+names: ['hello', 'iloveyou', 'no', 'thankyou', 'yes']
