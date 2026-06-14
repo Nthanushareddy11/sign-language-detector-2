@@ -1,10 +1,28 @@
 # 🤟 Sign Language Detection System
 
-Real-time **ASL Sign Language** detection using **YOLOv8 + FastAPI**.
+Real-time **ASL (American Sign Language)** detection using **YOLOv8 + FastAPI**.
 
-Detects 5 common signs: **hello | iloveyou | no | thankyou | yes**
+Detects **26 letters A-Z** in real time via webcam.
 
-Dataset is **bundled** — no external download needed!
+🌐 **Live Demo:** [nthanushareddy11.github.io/sign-language-detector](https://nthanushareddy11.github.io/sign-language-detector)
+
+---
+
+## 🎯 Features
+
+- 📷 **Live webcam detection** — show any hand sign A-Z
+- 🔤 **Full alphabet** — detects all 26 ASL letters
+- ✍️ **Word builder** — spell words letter by letter
+- ⚡ **Real-time** — ~70ms inference latency
+- 📁 **Image upload** — test with any photo
+
+---
+
+## 🖼️ Demo
+
+| Webcam Detection | Word Builder |
+|-----------------|--------------|
+| Show hand sign → letter detected instantly | Spell words by signing letters one by one |
 
 ---
 
@@ -12,24 +30,19 @@ Dataset is **bundled** — no external download needed!
 
 ### 1. Install
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-### 2. Train (dataset already included!)
+### 2. Run API
 ```bash
-python3 model/train.py
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-- Pretrained weights (~6MB) download automatically on first run
-- Takes ~15 min on Mac M1
-- Best model saved to `runs/train/sign_detector/weights/best.pt`
 
-### 3. Run API
+### 3. Open Frontend
 ```bash
-python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+python3 -m http.server 3000
+# Open http://127.0.0.1:3000
 ```
-
-### 4. Open Frontend
-Double-click `index.html` → click **Start Camera** → show hand signs! 🤟
 
 ---
 
@@ -38,7 +51,7 @@ Double-click `index.html` → click **Start Camera** → show hand signs! 🤟
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/` | Health check |
-| GET | `/health` | Model info |
+| GET | `/health` | Model info + 26 classes |
 | POST | `/detect` | Detect sign from image |
 | POST | `/detect/webcam` | Detect from base64 frame |
 
@@ -47,37 +60,38 @@ Double-click `index.html` → click **Start Camera** → show hand signs! 🤟
 {
   "detections": [
     {
-      "sign": "hello",
-      "emoji": "👋",
-      "confidence": 0.934,
+      "sign": "A",
+      "confidence": 0.91,
       "bbox": [120, 45, 380, 310]
     }
   ],
-  "text": "hello",
-  "latency_ms": 87.4
+  "text": "A",
+  "latency_ms": 68.4
 }
 ```
 
 ---
 
-## 🎯 Signs Supported
+## 🔤 Supported Signs
 
-| Sign | Emoji | Description |
-|------|-------|-------------|
-| hello | 👋 | Wave gesture |
-| iloveyou | 🤟 | ILY hand sign |
-| no | 🚫 | Head/hand shake |
-| thankyou | 🙏 | Flat hand from chin |
-| yes | ✅ | Fist nod |
+| A | B | C | D | E | F | G | H | I | J | K | L | M |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+| N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ---
 
 ## 🛠 Tech Stack
-- **Model:** YOLOv8n (Ultralytics + PyTorch)
+
+- **Model:** YOLOv8n (Ultralytics)
+- **Framework:** PyTorch
 - **API:** FastAPI + Uvicorn
 - **Vision:** OpenCV
-- **Dataset:** 756 labelled images (bundled)
-- **Container:** Docker
+- **Frontend:** Vanilla JS + HTML5 Canvas
+- **Deployment:** Render (API) + GitHub Pages (Frontend)
 
 ---
 
@@ -90,4 +104,4 @@ docker run -p 8000:8000 sign-detector
 ---
 
 ## 📝 Resume Bullet
-> *"Built real-time ASL sign language detection system using YOLOv8 and PyTorch; trained on 756 labelled images across 5 sign classes; served via FastAPI with live webcam inference UI"*
+> *"Built real-time ASL sign language detection system using YOLOv8 and PyTorch; detects all 26 alphabet letters; served via FastAPI with live webcam inference and word-building UI; deployed on Render + GitHub Pages"*
