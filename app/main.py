@@ -1,92 +1,83 @@
 """
 Sign Language Detection API
 ----------------------------
-Endpoints:
-    GET  /           → health check
-    GET  /health     → model info
-    POST /detect     → detect sign language from image
-    POST /detect/webcam → detect from base64 webcam frame
+Supports two modes:
+  - word  : hello, iloveyou, no, thankyou, yes
+  - alpha : A-Z (26 letters)
 """
 
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-import time
-import sys
-import os
-import base64
+import time, sys, os, base64
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from model.detector import load_model, detect_signs
+from model.detector import load_models, detect_signs
 
-# ── App setup ────────────────────────────────────────────────────────
 app = FastAPI(
-    title       = "Sign Language Detection API",
-    description = "Real-time ASL (American Sign Language) hand sign detection using YOLOv8 + MediaPipe.",
-    version     = "1.0.0",
+    title="Sign Language Detection API",
+    description="Dual-mode ASL detection: word signs + A-Z alphabet using YOLOv8.",
+    version="2.0.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins  = ["*"],
-    allow_methods  = ["*"],
-    allow_headers  = ["*"],
+    allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
 )
 
-model = None
+models = {}
 
 @app.on_event("startup")
 async def startup():
-    global model
-    print("Loading Sign Language Detection model...")
-    model = load_model()
-    print("✅ Model loaded!")
+    global models
+    print("Loading Sign Language models...")
+    models = load_models()
+    print(f"✅ Loaded models: {list(models.keys())}")
 
 
 class WebcamInput(BaseModel):
-    image: str   # base64 encoded image
+    image: str
+    mode: str = "word"
 
-
-# ── Routes ───────────────────────────────────────────────────────────
 
 @app.get("/")
 def root():
-    return {"message": "Sign Language Detection API is running 🤟", "docs": "/docs"}
+    return {"message": "Sign Language Detection API 🤟", "docs": "/docs", "modes": ["word", "alpha"]}
 
 
 @app.get("/health")
 def health():
     return {
         "status"  : "healthy",
-        "model"   : "YOLOv8 + MediaPipe",
-        "classes" : list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + ["del", "nothing", "space"],
-        "total"   : 29
+        "models"  : list(models.keys()),
+        "word_signs" : ["hello", "iloveyou", "no", "thankyou", "yes"],
+        "alpha_signs": list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     }
 
 
 @app.post("/detect")
-async def detect(file: UploadFile = File(...)):
-    """
-    Upload an image and detect ASL hand signs.
-
-    Returns
-    -------
-    - detections  : list of detected signs with confidence + bbox
-    - text        : detected letters joined as text
-    - annotated   : base64 annotated image
-    - latency_ms  : inference time
-    """
+async def detect(
+    file: UploadFile = File(...),
+    mode: str = Query(default="word", enum=["word", "alpha"])
+):
     if not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="File must be an image.")
 
+    if mode not in models:
+        available = list(models.keys())
+        mode = available[0] if available else None
+        if not mode:
+            raise HTTPException(status_code=503, detail="No models loaded.")
+
     image_bytes = await file.read()
     start = time.time()
-    result = detect_signs(model, image_bytes)
+    result = detect_signs(models[mode], image_bytes, mode=mode)
     latency = round((time.time() - start) * 1000, 1)
 
     return JSONResponse({
         "filename"   : file.filename,
+        "mode"       : mode,
         "detections" : result["detections"],
         "text"       : result["text"],
         "annotated"  : result["annotated"],
@@ -96,17 +87,19 @@ async def detect(file: UploadFile = File(...)):
 
 @app.post("/detect/webcam")
 async def detect_webcam(input: WebcamInput):
-    """Detect sign language from a base64 encoded webcam frame."""
     try:
         image_bytes = base64.b64decode(input.image)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid base64 image.")
 
+    mode = input.mode if input.mode in models else list(models.keys())[0]
+
     start = time.time()
-    result = detect_signs(model, image_bytes)
+    result = detect_signs(models[mode], image_bytes, mode=mode)
     latency = round((time.time() - start) * 1000, 1)
 
     return JSONResponse({
+        "mode"       : mode,
         "detections" : result["detections"],
         "text"       : result["text"],
         "annotated"  : result["annotated"],

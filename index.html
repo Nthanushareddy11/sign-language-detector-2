@@ -13,13 +13,23 @@
   .logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:grid;place-items:center;font-size:20px}
   header h1{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700}
   .badge{font-size:11px;background:rgba(0,212,170,.15);color:var(--accent);border:1px solid rgba(0,212,170,.3);padding:3px 10px;border-radius:20px;margin-left:8px}
-  .container{max-width:1100px;margin:0 auto;padding:40px 24px}
+  .container{max-width:1100px;margin:0 auto;padding:36px 24px}
   .hero{text-align:center;margin-bottom:28px}
-  .hero h2{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+  .hero h2{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,#fff 30%,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
   .hero p{color:var(--muted);font-size:15px}
 
-  /* Alphabet grid */
-  .alpha-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:28px}
+  /* Mode toggle */
+  .mode-toggle{display:flex;justify-content:center;gap:0;margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;width:fit-content;margin-left:auto;margin-right:auto}
+  .mode-btn{padding:10px 28px;border:none;border-radius:9px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:var(--muted)}
+  .mode-btn.active{background:linear-gradient(135deg,var(--accent),#00B89A);color:#000}
+
+  /* Word signs bar */
+  .signs-bar{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+  .sign-chip{display:flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:24px;font-size:13px;font-weight:500}
+  .sign-chip .em{font-size:18px}
+
+  /* Alpha grid */
+  .alpha-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:24px}
   .alpha-chip{width:36px;height:36px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--muted);transition:all .2s}
   .alpha-chip.active{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.15);box-shadow:0 0 12px rgba(0,212,170,.4)}
 
@@ -37,24 +47,24 @@
   .btn:hover{opacity:.85}
   .btn:disabled{opacity:.4;cursor:not-allowed}
 
-  .detected-sign{text-align:center;padding:16px 0}
-  .big-letter{font-family:'Space Grotesk',sans-serif;font-size:110px;font-weight:700;color:var(--accent);line-height:1;min-height:130px;display:flex;align-items:center;justify-content:center}
-  .sign-name{font-size:14px;color:var(--muted);margin-bottom:4px}
-  .conf-bar-wrap{margin-top:12px}
+  .detected-sign{text-align:center;padding:12px 0}
+  .big-display{font-family:'Space Grotesk',sans-serif;font-size:90px;font-weight:700;color:var(--accent);line-height:1;min-height:110px;display:flex;align-items:center;justify-content:center}
+  .sign-name{font-size:16px;font-weight:600;color:var(--text);margin-top:4px;text-transform:capitalize}
+  .conf-text{font-size:13px;color:var(--muted);margin-top:2px}
+  .conf-bar-wrap{margin-top:10px}
   .conf-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px}
   .conf-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s ease}
   .conf-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
 
   .det-list{display:flex;flex-direction:column;gap:7px;max-height:160px;overflow-y:auto;margin-top:12px}
   .det-item{display:flex;align-items:center;gap:10px;padding:7px 12px;background:var(--bg);border-radius:8px}
-  .det-letter{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--accent);width:26px}
+  .det-sign{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--accent);width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .det-bar-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
   .det-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px}
   .det-conf{font-size:12px;color:var(--muted);width:36px;text-align:right}
 
-  /* Word builder */
   .word-card{margin-bottom:20px}
-  .word-display{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 20px;font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;letter-spacing:4px;min-height:70px;display:flex;align-items:center;word-break:break-all;margin-bottom:12px;color:var(--accent)}
+  .word-display{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 20px;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:3px;min-height:70px;display:flex;align-items:center;word-break:break-all;margin-bottom:12px;color:var(--accent)}
   .word-controls{display:flex;gap:8px;flex-wrap:wrap}
   .wbtn{padding:8px 16px;font-size:13px;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-weight:500;cursor:pointer;transition:opacity .2s}
   .wbtn:hover{opacity:.8}
@@ -75,7 +85,6 @@
   .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0}
   .dot.live{background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 1.5s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
   @media(max-width:700px){.main-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -83,19 +92,32 @@
 
 <header>
   <div class="logo">🤟</div>
-  <div><h1>Sign Language Detector <span class="badge">A-Z · YOLOv8</span></h1></div>
+  <div><h1>Sign Language Detector <span class="badge">YOLOv8</span></h1></div>
 </header>
 
 <div class="container">
-
   <div class="hero">
-    <h2>Detect All 26 Letters</h2>
-    <p>Show any ASL hand sign A-Z to your webcam — detected in real time</p>
+    <h2>Real-Time ASL Detection</h2>
+    <p>Switch between Word Signs and A-Z Alphabet detection</p>
   </div>
 
-  <!-- Alphabet grid -->
-  <div class="alpha-grid" id="alphaGrid">
-    <!-- filled by JS -->
+  <!-- Mode toggle -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="wordBtn" onclick="setMode('word')">👋 Word Signs</button>
+    <button class="mode-btn" id="alphaBtn" onclick="setMode('alpha')">🔤 A-Z Alphabet</button>
+  </div>
+
+  <!-- Word signs bar -->
+  <div id="wordBar" class="signs-bar">
+    <div class="sign-chip"><span class="em">👋</span> Hello</div>
+    <div class="sign-chip"><span class="em">🤟</span> I Love You</div>
+    <div class="sign-chip"><span class="em">🚫</span> No</div>
+    <div class="sign-chip"><span class="em">🙏</span> Thank You</div>
+    <div class="sign-chip"><span class="em">✅</span> Yes</div>
+  </div>
+
+  <!-- Alpha grid -->
+  <div id="alphaBar" class="alpha-grid" style="display:none">
   </div>
 
   <div class="api-row">
@@ -107,7 +129,7 @@
   <div class="stats-row">
     <div class="stat"><div class="stat-val" id="totalDet">0</div><div class="stat-lbl">Detections</div></div>
     <div class="stat"><div class="stat-val" id="avgLat">—</div><div class="stat-lbl">Avg Latency</div></div>
-    <div class="stat"><div class="stat-val" id="topSign">—</div><div class="stat-lbl">Top Letter</div></div>
+    <div class="stat"><div class="stat-val" id="topSign">—</div><div class="stat-lbl">Top Sign</div></div>
   </div>
 
   <div class="main-grid">
@@ -124,10 +146,11 @@
     </div>
 
     <div class="card">
-      <div class="card-label">🔍 Detected Letter</div>
+      <div class="card-label">🔍 Detected Sign</div>
       <div class="detected-sign">
-        <div class="big-letter" id="bigLetter">?</div>
-        <div class="sign-name" id="confText">Start camera to begin</div>
+        <div class="big-display" id="bigDisplay">?</div>
+        <div class="sign-name" id="signName"></div>
+        <div class="conf-text" id="confText">Start camera to begin</div>
         <div class="conf-bar-wrap">
           <div class="conf-row"><span>Confidence</span><span id="confVal">0%</span></div>
           <div class="conf-bar-track"><div class="conf-bar-fill" id="confBar" style="width:0%"></div></div>
@@ -142,12 +165,12 @@
 
   <!-- Word builder -->
   <div class="card word-card">
-    <div class="card-label">✍️ Word Builder — Spell words with hand signs!</div>
+    <div class="card-label">✍️ Builder — Add detected signs to build a message</div>
     <div class="word-display" id="wordDisplay">_</div>
     <div class="word-controls">
-      <button class="wbtn" style="background:var(--accent);color:#000" onclick="addLetter()">+ Add Letter</button>
+      <button class="wbtn" style="background:var(--accent);color:#000" onclick="addSign()">+ Add Sign</button>
       <button class="wbtn" style="background:var(--border);color:var(--text)" onclick="addSpace()">Space</button>
-      <button class="wbtn" style="background:rgba(248,113,113,.2);color:var(--red)" onclick="deleteLetter()">⌫ Delete</button>
+      <button class="wbtn" style="background:rgba(248,113,113,.2);color:var(--red)" onclick="deleteSign()">⌫ Delete</button>
       <button class="wbtn" style="background:rgba(248,113,113,.1);color:var(--red)" onclick="clearWord()">Clear</button>
     </div>
   </div>
@@ -159,33 +182,47 @@
     <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Click to upload a photo with a hand sign</button>
     <div id="uploadResult" style="margin-top:14px"></div>
   </div>
-
 </div>
 
 <script>
   const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  let stream=null,detecting=false,detectInterval=null;
-  let currentLetter='',totalDet=0,latencies=[],signCounts={},word='';
+  const WORD_EMOJIS = {hello:'👋',iloveyou:'🤟',no:'🚫',thankyou:'🙏',yes:'✅'};
 
-  // Build alphabet grid
-  const grid = document.getElementById('alphaGrid');
+  let stream=null, detecting=false, detectInterval=null;
+  let currentSign='', totalDet=0, latencies=[], signCounts={}, built='';
+  let currentMode='word';
+
+  // Build alpha grid
+  const alphaBar = document.getElementById('alphaBar');
   LETTERS.forEach(l => {
     const chip = document.createElement('div');
-    chip.className = 'alpha-chip';
-    chip.id = 'chip-'+l;
-    chip.textContent = l;
-    grid.appendChild(chip);
+    chip.className='alpha-chip'; chip.id='chip-'+l; chip.textContent=l;
+    alphaBar.appendChild(chip);
   });
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('wordBtn').className = mode==='word' ? 'mode-btn active' : 'mode-btn';
+    document.getElementById('alphaBtn').className = mode==='alpha' ? 'mode-btn active' : 'mode-btn';
+    document.getElementById('wordBar').style.display = mode==='word' ? 'flex' : 'none';
+    document.getElementById('alphaBar').style.display = mode==='alpha' ? 'flex' : 'none';
+    document.getElementById('bigDisplay').textContent='?';
+    document.getElementById('signName').textContent='';
+    document.getElementById('confText').textContent='Show a hand sign';
+    document.getElementById('detList').innerHTML='<div style="color:var(--muted);font-size:13px;text-align:center;padding:14px">No detections yet</div>';
+    LETTERS.forEach(l=>{const c=document.getElementById('chip-'+l);if(c)c.className='alpha-chip';});
+    currentSign='';
+  }
 
   async function startCamera(){
     try{
-      stream = await navigator.mediaDevices.getUserMedia({video:{width:640,height:480}});
-      document.getElementById('webcam').srcObject = stream;
-      document.getElementById('startBtn').disabled = true;
-      document.getElementById('stopBtn').disabled = false;
-      document.getElementById('statusDot').className = 'dot live';
-      detecting = true;
-      detectInterval = setInterval(captureAndDetect, 800);
+      stream=await navigator.mediaDevices.getUserMedia({video:{width:640,height:480}});
+      document.getElementById('webcam').srcObject=stream;
+      document.getElementById('startBtn').disabled=true;
+      document.getElementById('stopBtn').disabled=false;
+      document.getElementById('statusDot').className='dot live';
+      detecting=true;
+      detectInterval=setInterval(captureAndDetect,800);
     }catch(e){alert('Camera access denied. Please allow camera access.');}
   }
 
@@ -195,22 +232,22 @@
     document.getElementById('startBtn').disabled=false;
     document.getElementById('stopBtn').disabled=true;
     document.getElementById('statusDot').className='dot';
-    document.getElementById('bigLetter').textContent='😴';
-    document.getElementById('confText').textContent='Camera stopped';
-    LETTERS.forEach(l=>document.getElementById('chip-'+l).className='alpha-chip');
+    document.getElementById('bigDisplay').textContent='😴';
+    document.getElementById('signName').textContent='Camera stopped';
+    LETTERS.forEach(l=>{const c=document.getElementById('chip-'+l);if(c)c.className='alpha-chip';});
   }
 
   async function captureAndDetect(){
     if(!detecting)return;
     const video=document.getElementById('webcam');
     const canvas=document.createElement('canvas');
-    canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;
+    canvas.width=video.videoWidth||640; canvas.height=video.videoHeight||480;
     canvas.getContext('2d').drawImage(video,0,0);
     canvas.toBlob(async(blob)=>{
-      const fd=new FormData();fd.append('file',blob,'frame.jpg');
+      const fd=new FormData(); fd.append('file',blob,'frame.jpg');
       const api=document.getElementById('apiUrl').value;
       try{
-        const res=await fetch(`${api}/detect`,{method:'POST',body:fd});
+        const res=await fetch(`${api}/detect?mode=${currentMode}`,{method:'POST',body:fd});
         if(!res.ok)return;
         renderResult(await res.json());
       }catch(e){}
@@ -218,42 +255,42 @@
   }
 
   function renderResult(data){
-    totalDet++;document.getElementById('totalDet').textContent=totalDet;
+    totalDet++; document.getElementById('totalDet').textContent=totalDet;
     latencies.push(data.latency_ms);
     const avg=Math.round(latencies.slice(-10).reduce((a,b)=>a+b,0)/Math.min(10,latencies.length));
     document.getElementById('avgLat').textContent=avg+'ms';
-
-    // Reset alphabet highlights
-    LETTERS.forEach(l=>document.getElementById('chip-'+l).className='alpha-chip');
+    LETTERS.forEach(l=>{const c=document.getElementById('chip-'+l);if(c)c.className='alpha-chip';});
 
     if(data.detections&&data.detections.length>0){
       const top=data.detections[0];
-      currentLetter=top.sign;
-      signCounts[currentLetter]=(signCounts[currentLetter]||0)+1;
-      const topL=Object.entries(signCounts).sort((a,b)=>b[1]-a[1])[0][0];
-      document.getElementById('topSign').textContent=topL;
+      currentSign=top.sign;
+      signCounts[currentSign]=(signCounts[currentSign]||0)+1;
+      const topS=Object.entries(signCounts).sort((a,b)=>b[1]-a[1])[0][0];
+      document.getElementById('topSign').textContent=topS;
 
-      document.getElementById('bigLetter').textContent=currentLetter;
+      const emoji=WORD_EMOJIS[top.sign]||top.sign;
+      document.getElementById('bigDisplay').textContent=emoji;
+      document.getElementById('signName').textContent=top.sign;
       const pct=Math.round(top.confidence*100);
       document.getElementById('confText').textContent=`Confidence: ${pct}%`;
       document.getElementById('confVal').textContent=pct+'%';
       document.getElementById('confBar').style.width=pct+'%';
       document.getElementById('statusDot').className='dot live';
 
-      // Highlight detected letter in grid
-      if(document.getElementById('chip-'+currentLetter)){
-        document.getElementById('chip-'+currentLetter).className='alpha-chip active';
+      if(currentMode==='alpha'&&document.getElementById('chip-'+currentSign)){
+        document.getElementById('chip-'+currentSign).className='alpha-chip active';
       }
 
       document.getElementById('detList').innerHTML=data.detections.slice(0,5).map(d=>`
         <div class="det-item">
-          <span class="det-letter">${d.sign}</span>
+          <span class="det-sign">${WORD_EMOJIS[d.sign]||''} ${d.sign}</span>
           <div class="det-bar-track"><div class="det-bar-fill" style="width:${Math.round(d.confidence*100)}%"></div></div>
           <span class="det-conf">${Math.round(d.confidence*100)}%</span>
         </div>`).join('');
     }else{
-      currentLetter='';
-      document.getElementById('bigLetter').textContent='—';
+      currentSign='';
+      document.getElementById('bigDisplay').textContent='—';
+      document.getElementById('signName').textContent='';
       document.getElementById('confText').textContent='No sign detected — show a hand sign';
       document.getElementById('confBar').style.width='0%';
       document.getElementById('detList').innerHTML='<div style="color:var(--muted);font-size:13px;text-align:center;padding:14px">No sign detected</div>';
@@ -261,18 +298,18 @@
 
     if(data.annotated){
       const ov=document.getElementById('overlay'),v=document.getElementById('webcam');
-      ov.width=v.videoWidth||640;ov.height=v.videoHeight||480;
+      ov.width=v.videoWidth||640; ov.height=v.videoHeight||480;
       const img=new Image();
       img.onload=()=>{const c=ov.getContext('2d');c.clearRect(0,0,ov.width,ov.height);c.save();c.scale(-1,1);c.drawImage(img,-ov.width,0,ov.width,ov.height);c.restore();};
       img.src='data:image/jpeg;base64,'+data.annotated;
     }
   }
 
-  function addLetter(){if(currentLetter){word+=currentLetter;updateWord();}}
-  function addSpace(){word+=' ';updateWord();}
-  function deleteLetter(){word=word.slice(0,-1);updateWord();}
-  function clearWord(){word='';updateWord();}
-  function updateWord(){document.getElementById('wordDisplay').textContent=word||'_';}
+  function addSign(){if(currentSign){built+=currentSign+' ';updateBuilt();}}
+  function addSpace(){built+=' ';updateBuilt();}
+  function deleteSign(){built=built.trimEnd().split(' ').slice(0,-1).join(' ')+' ';updateBuilt();}
+  function clearWord(){built='';updateBuilt();}
+  function updateBuilt(){document.getElementById('wordDisplay').textContent=built.trim()||'_';}
 
   async function uploadImage(event){
     const file=event.target.files[0];if(!file)return;
@@ -280,12 +317,12 @@
     const fd=new FormData();fd.append('file',file);
     document.getElementById('uploadResult').innerHTML='<p style="color:var(--muted);font-size:13px">Analyzing...</p>';
     try{
-      const res=await fetch(`${api}/detect`,{method:'POST',body:fd});
+      const res=await fetch(`${api}/detect?mode=${currentMode}`,{method:'POST',body:fd});
       const data=await res.json();
       if(data.detections&&data.detections.length>0){
         document.getElementById('uploadResult').innerHTML=`
           <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:8px">
-            <p style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--accent)">${data.detections.map(d=>d.sign).join(' ')}</p>
+            <p style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--accent)">${data.detections.map(d=>(WORD_EMOJIS[d.sign]||'')+' '+d.sign).join('  |  ')}</p>
             <p style="color:var(--muted);font-size:12px;margin-top:6px">⚡ ${data.latency_ms}ms</p>
             ${data.annotated?`<img src="data:image/jpeg;base64,${data.annotated}" style="margin-top:12px;width:100%;border-radius:8px"/>`:''}
           </div>`;
